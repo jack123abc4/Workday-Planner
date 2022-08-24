@@ -15,8 +15,8 @@ for (var i = 0; i < 8; i++) {
     // add timeblocks to row
     var hourColEl = document.createElement("div");
     hourColEl.classList.add("hour", "time-block", "col-1");
-    var dayStart = moment("9am", "hh:mm");
-    hourColEl.textContent = dayStart.add(i,"hours").format("hh:mm");
+    var hourBlock = moment({hour:9+i, minute:0})
+    hourColEl.textContent = hourBlock.format("hh:mm");
     rowEl.appendChild(hourColEl);
 
     var timeblockColEl = document.createElement("div");
@@ -26,4 +26,21 @@ for (var i = 0; i < 8; i++) {
     var saveColEl = document.createElement("div");
     saveColEl.classList.add("saveBtn", "time-block", "col-1");
     rowEl.appendChild(saveColEl);
+
+    // set past, present, future styles
+    // var hourNow = moment();
+    var hourNow = moment({hour:13, minute:0});
+    console.log("Block: " + hourBlock.format("hh:mm") + "\n" + "Current time: " + hourNow.format("hh:mm"));
+    if (hourNow > hourBlock) {
+        console.log("past");
+        rowEl.classList.add("past");
+    }
+    else if (hourNow < hourBlock) {
+        console.log("future");
+        rowEl.classList.add("future");
+    }
+    else {
+        console.log("present");
+        rowEl.classList.add("present");
+    }
 }
