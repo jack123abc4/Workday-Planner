@@ -3,7 +3,9 @@ var calendarEl = document.querySelector("#currentDay")
 calendarEl.textContent = moment().format("dddd, MMM Do");
 
 
-// create rows
+
+function init() {
+    // create rows
 var containerEl = document.querySelector(".container")
 for (var i = 0; i < 9; i++) {
     // add row to container
@@ -53,4 +55,16 @@ for (var i = 0; i < 9; i++) {
         console.log("present");
         rowEl.classList.add("present");
     }
+}
+}
+
+
+init();
+
+var saveButtonEls = document.querySelectorAll(".saveBtn");
+// save button listener
+for (var i = 0; i < saveButtonEls.length; i++) {
+    saveButtonEls[i].addEventListener("click", function() {
+        console.log("Save button clicked!");
+    })
 }
