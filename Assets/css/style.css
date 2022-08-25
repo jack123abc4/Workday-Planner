@@ -75,3 +75,10 @@ textarea {
   font-size: 300%;
   font-weight: bold;
 }
+
+/* formatting for input fields */
+input {
+  border: none;
+  background-color: transparent;
+  
+}
