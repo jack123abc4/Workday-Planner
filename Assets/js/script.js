@@ -11,7 +11,9 @@ for (var i = 0; i < 9; i++) {
     // add row to container
     var rowEl = document.createElement("div")
     rowEl.classList.add("row");
+    rowEl.setAttribute("id", "row" + i)
     containerEl.appendChild(rowEl);
+    // console.log(rowEl.id,rowEl.id.split("row")[1]);
 
     // add hour block to row
     var hourColEl = document.createElement("div");
@@ -23,8 +25,8 @@ for (var i = 0; i < 9; i++) {
     // add event block to row
     var timeblockColEl = document.createElement("input");
     timeblockColEl.classList.add("description", "time-block", "col-10");
-    if (localStorage.getItem(9+1)) {
-        timeblockColEl.value = localStorage.getItem(9+i);
+    if (localStorage.getItem(i)) {
+        timeblockColEl.value = localStorage.getItem(i);
     }
     rowEl.appendChild(timeblockColEl);
 
@@ -61,10 +63,26 @@ for (var i = 0; i < 9; i++) {
 
 init();
 
+// click listener for all save buttons
 var saveButtonEls = document.querySelectorAll(".saveBtn");
-// save button listener
 for (var i = 0; i < saveButtonEls.length; i++) {
-    saveButtonEls[i].addEventListener("click", function() {
-        console.log("Save button clicked!");
+    saveButtonEls[i].addEventListener("click", function(event) {
+        // get parent row el + num
+        var parentRow = $(event.target).parent()
+        while (!parentRow.attr("id")) {
+            parentRow = parentRow.parent();
+        }
+        var rowNum = parentRow.attr("id").split("row")[1];
+        console.log("Row: " + rowNum);
+
+        // save event
+        if (!localStorage.getItem(rowNum)) {
+            var currentTimeblockEl = parentRow.children()[1];
+            var timeblockText = currentTimeblockEl.value.trim();
+            if (timeblockText) {
+                localStorage.setItem(rowNum, timeblockText);
+            }
+        }
+
     })
 }
