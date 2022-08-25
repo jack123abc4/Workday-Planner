@@ -21,6 +21,9 @@ for (var i = 0; i < 9; i++) {
     // add event block to row
     var timeblockColEl = document.createElement("input");
     timeblockColEl.classList.add("description", "time-block", "col-10");
+    if (localStorage.getItem(9+1)) {
+        timeblockColEl.value = localStorage.getItem(9+i);
+    }
     rowEl.appendChild(timeblockColEl);
 
     // add save block to row
@@ -35,14 +38,14 @@ for (var i = 0; i < 9; i++) {
 
     // set past, present, future styles
     
-    // var hourNow = moment();
-    var hourNow = moment({hour:13, minute:0});
-    console.log("Block: " + hourBlock.format("hh:mm") + "\n" + "Current time: " + hourNow.format("hh:mm"));
-    if (hourNow > hourBlock) {
+    var timeNow = moment();
+    //var timeNow = moment({hour:13, minute:0});
+    console.log("Block: " + hourBlock.format("hh:mm") + "\n" + "Current time: " + timeNow.format("hh:mm"));
+    if (timeNow.hour() > hourBlock.hour()) {
         console.log("past");
         rowEl.classList.add("past");
     }
-    else if (hourNow < hourBlock) {
+    else if (timeNow.hour() < hourBlock.hour()) {
         console.log("future");
         rowEl.classList.add("future");
     }
