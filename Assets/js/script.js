@@ -19,7 +19,9 @@ for (var i = 0; i < 9; i++) {
     var hourColEl = document.createElement("div");
     hourColEl.classList.add("hour", "time-block", "col-1");
     var hourBlock = moment({hour:9+i, minute:0})
-    hourColEl.textContent = hourBlock.format("hh:mm");
+    var hourColPEl = document.createElement("p");
+    hourColPEl.textContent = hourBlock.format("hh:mm");
+    hourColEl.appendChild(hourColPEl);
     rowEl.appendChild(hourColEl);
 
     // add event block to row
@@ -76,13 +78,11 @@ for (var i = 0; i < saveButtonEls.length; i++) {
         console.log("Row: " + rowNum);
 
         // save event
-        if (!localStorage.getItem(rowNum)) {
-            var currentTimeblockEl = parentRow.children()[1];
-            var timeblockText = currentTimeblockEl.value.trim();
-            if (timeblockText) {
-                localStorage.setItem(rowNum, timeblockText);
-            }
-        }
+        var currentTimeblockEl = parentRow.children()[1];
+        var timeblockText = currentTimeblockEl.value.trim();
+        localStorage.setItem(rowNum, timeblockText);
+        
+        
 
     })
 }

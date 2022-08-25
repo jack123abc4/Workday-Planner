@@ -31,6 +31,12 @@ textarea {
   /* border-radius: 15px; */
 }
 
+/* time block text formatting */
+.time-block p {
+  height: 60px;
+  line-height:60px;
+}
+
 .row {
   white-space: pre-wrap;
   height: 80px;
@@ -41,6 +47,7 @@ textarea {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  
 }
 
 .past {
